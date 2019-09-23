@@ -1,0 +1,296 @@
+
+package javaapplication38;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+/**
+ *
+ * @author PRAVEEN
+ */
+
+public class JavaApplication38 {
+
+    public static void main(String[] args) {
+        int n,anl,anr,bnl,bnr,cnl,cnr,dnl,dnr;
+        Scanner s =new Scanner(System.in);
+       //As per the given problem statement there are 4 2d arrays..
+        System.out.println("ENTER THE INDEX OF 1ST 2D ARRAY ( COLUMNS * ROWS)");
+        anr=s.nextInt(); 
+        anl=s.nextInt();
+        
+        
+        System.out.println("ENTER THE INDEX OF 12ND 2D ARRAY (COLUMNS * ROWS)");
+        bnr=s.nextInt();
+        bnl=s.nextInt();
+
+        
+        System.out.println("ENTER THE INDEX OF 3RD 2D ARRAY ( COLUMNS * ROWS )");
+        cnr=s.nextInt();
+        cnl=s.nextInt();
+ 
+        
+        System.out.println("ENTER THE INDEX OF 4TH 2D ARRAY ( COLUMNS * ROWS)");
+        dnr=s.nextInt();
+        dnl=s.nextInt();
+       
+        System.out.println("ENTER THE NUMBER OF PASSENGERS");
+         n=s.nextInt();
+         if(n>(anl*anr)+(bnl*bnr)+(cnl*cnr)+(dnl*dnr)){
+             System.out.println("Sorry...Only "+((anl*anr)+(bnl*bnr)+(cnl*cnr)+(dnl*dnr))+" Seats Available");
+            }
+         else{
+        int[][] a=new int[anl][anr];
+        int[][] b=new int[bnl][bnr];
+        int[][] c=new int[cnl][cnr];
+        int[][] d=new int[dnl][dnr];
+       
+        int fa=0,fb=0,fc=0,fd=0,ac=0,bc=0,cc=0,dc=0,aw=0,dw=0,am=0,bm=0,cm=0,dm=0;
+        int m=1;
+        int i=0;
+        while(i<4){
+            //FIRST ARRAY
+            if(fa==0)
+            {
+                //CORNER SEATS
+                if(ac==0){
+                    a[i][anr-1]=m;
+                    ++m;
+                    if(m>n)
+                        break;
+                    if(i==anl-1)
+                        ac=1;
+                    
+            }
+                // WINDOW SEATS
+                else if(aw==0&&dc==1){
+                    
+                     if(i==anl)
+                        aw=1;
+                     else{
+                    a[i][0]=m;
+                    ++m;
+                    if(m>n)
+                        break;
+                   
+                     }
+                }
+                // MIDDLE SEATS
+               else if(dw==1&&am==0){
+                   
+                    int l=1;
+                    while(l<anr-1){
+                        a[i][l]=m;
+                        ++m;
+                        if(m>n)
+                        break;
+                        ++l;
+                        
+                    }
+                    if(i==anl-1)
+                        am=1;
+               }
+         
+      }
+            
+                    if(m>n){
+                            break;}
+            //SECOND ARRAY
+            if(fb==0){
+                //CORNER SEATS
+                if(bc==0){
+                    
+                
+                    b[i][0]=m;
+                    ++m;
+                    b[i][bnr-1]=m;
+                    ++m;
+                    if(i==bnl-1)
+                        bc=1;
+                }
+                //MIDDLE SEATS
+                else if(dw==1&&bm==0){
+                    int l=1;
+                    while(l<bnr-1){
+                        b[i][l]=m;
+                        ++m;
+                        if(m>n)
+                        break;
+                        ++l;
+                        
+                    }
+                    if(i==bnl-1){
+                        
+                        bm=1;}
+               }
+         
+      }
+            
+
+                    if(m>n){
+                            break;}
+            // THIRD ARRAY
+            if(fc==0){
+                //CORNER SEATS
+                if(cc==0){
+                    
+                
+                    c[i][0]=m;
+                    ++m;
+                    if(m>30)
+                        break;
+                    c[i][cnr-1]=m;
+                    ++m;
+                    if(m>30)
+                        break;
+                    if(i==cnl-1)
+                        cc=1;
+                }
+                //MIDDLE SEATS
+                else if(dw==1&&cm==0){
+                   
+                    int l=1;
+                    while(l<cnr-1){
+                        c[i][l]=m;
+                        ++m;
+                        if(m>30)
+                        break;
+                        ++l;
+                    }
+                    if(i==cnl-1)
+                        cm=1;
+               }
+         
+      }
+
+                    if(m>30){
+                            break;}
+                    
+                //FOURTH ARRAY
+                        if(fd==0)
+            {
+                //CORNER SEATS
+                if(dc==0){
+                    d[i][0]=m;
+                    ++m;
+                    if(m>30)
+                        break;
+                    if(i==dnl-1)
+                        dc=1;
+                    
+            }
+                //MIDDLE SEATS
+                else if(dw==1&&dm==0){
+                   
+                    int l=1;
+                    while(l<dnr-1){
+                        d[i][l]=m;
+                        ++m;
+                        if(m>30)
+                        break;
+                        ++l;
+                        
+                    }
+                    if(i==dnl-1){
+                        dm=1;
+                        
+                    }
+               }
+                //WINDOW SEATS
+                else if(dc==1&&dw==0){
+                    
+                    if(m>30)
+                        break;
+                    
+                    d[i][dnr-1]=m;
+                    ++m;
+                    
+                    if(m>30)
+                        break;
+                    if(i==dnl-1)
+                        dw=1;
+                }
+                
+               
+         
+      }
+                        
+                    if(m>n){
+                            break;}
+                
+                        ++i;
+                        if(i==4)
+                            i=0;
+       
+        }
+        // TO DISPLAY
+        int f=0;
+       System.out.println("THE SEATING ARRANGEMENTS ARE");
+       System.out.println();
+    for(int i1=0;i1<4;i1++){
+        if(i1<anl){
+        for(int j=0;j<anr;j++){
+            
+        System.out.print(a[i1][j]+" ");
+    
+    }
+        }
+        else{
+            f=0;
+                while(f<anr){
+                System.out.print("  ");
+                ++f;
+                }
+                }
+        
+    System.out.print("  ");
+    if(i1<bnl){
+           for(int j=0;j<bnr;j++){
+            
+        System.out.print(b[i1][j]+" ");
+    
+    }}
+    
+        else{
+            f=0;
+                while(f<bnr){
+                System.out.print("  ");
+                ++f;
+                }
+                }
+           
+    System.out.print("  ");
+    if(i1<cnl){
+              for(int j=0;j<cnr;j++){
+            
+        System.out.print(c[i1][j]+" ");
+    
+    }}
+     
+        else{
+            f=0;
+                while(f<cnr){
+                System.out.print("  ");
+                ++f;
+                }
+                }
+              
+    System.out.print("  ");
+    if(i1<dnl){
+                 for(int j=0;j<dnr;j++){
+            
+        System.out.print(d[i1][j]+" ");
+    
+    }}
+    
+        else{
+            f=0;
+                while(f<dnr){
+                System.out.print("  ");
+                ++f;
+                }
+                }
+    System.out.println();
+    }
+         }
+    }}
