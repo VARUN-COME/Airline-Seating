@@ -1,5 +1,5 @@
 # Airline-Seating
-Airline seating
+
 A Java program to arrange the seating for the Airline Passengers
 
 A program that helps to allocate seats to the passengers in a flight based on the following input and rules.
